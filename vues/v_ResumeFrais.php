@@ -19,7 +19,7 @@
               <a href="index.php?uc=etatFrais&action=selectionnerMois" title="Consultation de mes fiches de frais">Mes fiches de frais</a>
            </li>
  	   <li class="smenu">
-              <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
+              <a href="include('vues/v_connexion.php')" title="Se déconnecter">Déconnexion</a>
            </li>
          </ul>
         
@@ -28,8 +28,7 @@
 
 
    <div id="contenu">
-    <?php
-      		$employe = $pdo->getInfosvisiteur();
-    ?>
-      
+   <?php
+         $employe = $pdo->getInfosFrais();
+   ?>
    </div>

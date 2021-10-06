@@ -15,22 +15,13 @@
  * @link       http://www.php.net/manual/fr/book.pdo.php
  */
 
-
-
-class PdoGsb{ 
-	/*  		
+class PdoGsb{   		
       	private static $serveur='mysql:host=localhost';
       	private static $bdd='dbname=gsbweb';   		
       	private static $user='gsb-web' ;    		
-      	private static $mdp='pitakra67' ;
-		  */
-		private static $serveur='mysql:host=sql11.freemysqlhosting.net';
-      	private static $bdd='dbname=sql11439746';   		
-      	private static $user='sql11439746' ;    		
-      	private static $mdp='EhWRqJIdn7' ;
+      	private static $mdp='arnold67' ;	
 		private static $monPdo;
 		private static $monPdoGsb=null;
-	
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -68,6 +59,103 @@ class PdoGsb{
 		$rs = PdoGsb::$monPdo->query($req);
 		$ligne = $rs->fetch();
 		return $ligne;
+	}
+
+	public function getInfosVisiteur(){
+		?>
+		<table>
+		<thead>
+		<tr>
+			<td>Nom</td>
+			<td>Prenom</td>
+			<td>Identifiant</td>
+			<td>Mois</td>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		$info = PdoGsb::$monPdo -> query("SELECT idvisiteur,nom,prenom,fichefrais.mois from fichefrais inner join employe on fichefrais.idvisiteur = employe.id");
+		while($donnees = $info ->fetch())
+		{
+			?>		
+			<tr>
+				<td><?php echo $donnees['nom'] ?></td>
+				<td><?php echo $donnees['prenom'] ?></td>
+				<td><?php echo $donnees['idvisiteur'] ?></td>
+				<td><?php echo $donnees['mois'] ?></td>
+			</tr>
+			<?php
+		}
+?>
+		</tbody>
+		</table>
+	
+		<form action="index.php?uc=ResumeFrais&action=GestionFrais" method="post">
+		<p>
+			Nom <input type="text" name="Nom" />
+			Prenom <input type="text" name="Prenom" />
+			Identifiant <input type="text" name="Identifiant" />
+			Mois <input type="text" name="Mois" />
+			<input type="submit" value="Valider" />
+		</p>
+		</form>
+
+		<?php
+	}
+
+
+	public function getInfosFrais(){
+		?>
+		<table>
+		<thead>
+		<tr>
+			<td>Visiteur</td>
+			<td>Frais Forfait</td>
+			<td>Quantite</td>
+			<td>Mois</td>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		$info = PdoGsb::$monPdo -> query("SELECT idvisiteur,idfraisforfait,quantite,mois from lignefraisforfait where idvisiteur = '".$_POST['Identifiant']."'and mois = '".$_POST['Mois']."'");
+		while($donnees = $info ->fetch())
+		{
+			?>		
+			<tr>
+				<td><?php echo $donnees['idvisiteur'] ?></td>
+				<td><?php echo $donnees['idfraisforfait'] ?></td>
+				<td><?php echo $donnees['quantite'] ?></td>
+				<td><?php echo $donnees['mois'] ?></td>
+			</tr>
+			<?php
+		}
+?>
+		</tbody>
+		</table>
+
+		<table>
+		<thead>
+		<tr>
+			<td>Libelle</td>
+			<td>Prix</td>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		$info = PdoGsb::$monPdo -> query("SELECT libelle ,quantite * montant as total from lignefraisforfait INNER join fraisforfait on lignefraisforfait.idfraisforfait = fraisforfait.id where idvisiteur = '".$_POST['Identifiant']."'and mois = '".$_POST['Mois']."'");
+		while($donnees = $info ->fetch())
+		{
+			?>		
+			<tr>
+				<td><?php echo $donnees['libelle'] ?></td>
+				<td><?php echo $donnees['total'] ?></td>
+			</tr>
+			<?php
+		}
+?>
+		</tbody>
+		</table>
+<?php
 	}
 
 	
