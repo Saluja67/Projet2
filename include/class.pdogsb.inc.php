@@ -24,10 +24,10 @@ class PdoGsb{
       	private static $user='gsb-web' ;    		
       	private static $mdp='pitakra67' ;
 		  */
-		private static $serveur='mysql:host=sql11.freemysqlhosting.net';
-      	private static $bdd='dbname=sql11439746';   		
-      	private static $user='sql11439746' ;    		
-      	private static $mdp='EhWRqJIdn7' ;
+		private static $serveur='mysql:host=localhost';
+      	private static $bdd='dbname=gsbweb';   		
+      	private static $user='gsb-web' ;    		
+      	private static $mdp='pitakra67' ;
 		private static $monPdo;
 		private static $monPdoGsb=null;
 	
