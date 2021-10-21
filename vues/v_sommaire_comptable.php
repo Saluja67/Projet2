@@ -22,6 +22,7 @@
 
 
    <div id="contenu">
+<<<<<<< HEAD
     <table>
       <thead>
       <tr>
@@ -44,4 +45,10 @@
 
     
 		</form>
+=======
+    <?php
+      		$employe = $pdo->getInfosvisiteur();
+    ?>
+      
+>>>>>>> debcc7dc7db3f51924f9626235316412bfaf0a88
    </div>

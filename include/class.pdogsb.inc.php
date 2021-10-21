@@ -16,10 +16,18 @@
  */
 
 class PdoGsb{   		
+<<<<<<< HEAD
       	private static $serveur='mysql:host=localhost';
       	private static $bdd='dbname=gsbweb';   		
       	private static $user='gsb-web' ;    		
       	private static $mdp='pitakra67' ;	
+=======
+      	
+		private static $serveur='mysql:host=localhost';
+      	private static $bdd='dbname=gsbweb';   		
+      	private static $user='gsb-web' ;    		
+      	private static $mdp='pitakra67' ;
+>>>>>>> debcc7dc7db3f51924f9626235316412bfaf0a88
 		private static $monPdo;
 		private static $monPdoGsb=null;
 /**
@@ -61,6 +69,7 @@ class PdoGsb{
 		return $ligne;
 	}
 
+<<<<<<< HEAD
 	public function getfichesfrais(){
 
 		$info = PdoGsb::$monPdo -> query("SELECT idvisiteur,nom,prenom,fichefrais.mois from fichefrais inner join employe on fichefrais.idvisiteur = employe.id where idetat = 'CL' ");
@@ -69,21 +78,77 @@ class PdoGsb{
 		{
 			$donnees['nbligne']=++$nbligne;
 			?>	
+=======
+	public function getInfosVisiteur(){
+		?>
+		<table>
+		<thead>
+		<tr>
+			<td>Nom</td>
+			<td>Prenom</td>
+			<td>Identifiant</td>
+			<td>Mois</td>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		$info = PdoGsb::$monPdo -> query("SELECT idvisiteur,nom,prenom,fichefrais.mois from fichefrais inner join employe on fichefrais.idvisiteur = employe.id");
+		while($donnees = $info ->fetch())
+		{
+			?>		
+>>>>>>> debcc7dc7db3f51924f9626235316412bfaf0a88
 			<tr>
 				<td><?php echo $donnees['nom'] ?></td>
 				<td><?php echo $donnees['prenom'] ?></td>
 				<td><?php echo $donnees['idvisiteur'] ?></td>
 				<td><?php echo $donnees['mois'] ?></td>
+<<<<<<< HEAD
 
 				<td><?php echo '<a href ="index.php?uc=ResumeFrais&identifiant='.$donnees['idvisiteur'].'&mois='.$donnees['mois'].'">choisir</a>' ?></td>
 			</tr>
 			<?php
 		}
+=======
+			</tr>
+			<?php
+		}
+?>
+		</tbody>
+		</table>
+	
+		<form action="index.php?uc=ResumeFrais&action=GestionFrais" method="post">
+		<p>
+			Nom <input type="text" name="Nom" />
+			Prenom <input type="text" name="Prenom" />
+			Identifiant <input type="text" name="Identifiant" />
+			Mois <input type="text" name="Mois" />
+			<input type="submit" value="Valider" />
+		</p>
+		</form>
+
+		<?php
+>>>>>>> debcc7dc7db3f51924f9626235316412bfaf0a88
 	}
 
 
 	public function getInfosFrais(){
+<<<<<<< HEAD
 		$info = PdoGsb::$monPdo -> query("SELECT idvisiteur,idfraisforfait,quantite,mois from lignefraisforfait where idvisiteur = '".$_GET['identifiant']."'and mois = '".$_GET['mois']."'");
+=======
+		?>
+		<table>
+		<thead>
+		<tr>
+			<td>Visiteur</td>
+			<td>Frais Forfait</td>
+			<td>Quantite</td>
+			<td>Mois</td>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		$info = PdoGsb::$monPdo -> query("SELECT idvisiteur,idfraisforfait,quantite,mois from lignefraisforfait where idvisiteur = '".$_POST['Identifiant']."'and mois = '".$_POST['Mois']."'");
+>>>>>>> debcc7dc7db3f51924f9626235316412bfaf0a88
 		while($donnees = $info ->fetch())
 		{
 			?>		
@@ -95,10 +160,27 @@ class PdoGsb{
 			</tr>
 			<?php
 		}
+<<<<<<< HEAD
 	}
 
 	public function prixTotal(){
 		$info = PdoGsb::$monPdo -> query("SELECT libelle ,quantite * montant as total from lignefraisforfait INNER join fraisforfait on lignefraisforfait.idfraisforfait = fraisforfait.id where idvisiteur = '".$_GET['identifiant']."'and mois = '".$_GET['mois']."'");
+=======
+?>
+		</tbody>
+		</table>
+
+		<table>
+		<thead>
+		<tr>
+			<td>Libelle</td>
+			<td>Prix</td>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		$info = PdoGsb::$monPdo -> query("SELECT libelle ,quantite * montant as total from lignefraisforfait INNER join fraisforfait on lignefraisforfait.idfraisforfait = fraisforfait.id where idvisiteur = '".$_POST['Identifiant']."'and mois = '".$_POST['Mois']."'");
+>>>>>>> debcc7dc7db3f51924f9626235316412bfaf0a88
 		while($donnees = $info ->fetch())
 		{
 			?>		
@@ -106,12 +188,21 @@ class PdoGsb{
 				<td><?php echo $donnees['libelle'] ?></td>
 				<td><?php echo $donnees['total'] ?></td>
 			</tr>
+<<<<<<< HEAD
 
 
 			<?php
 		}
 		
 
+=======
+			<?php
+		}
+?>
+		</tbody>
+		</table>
+<?php
+>>>>>>> debcc7dc7db3f51924f9626235316412bfaf0a88
 	}
 
 	

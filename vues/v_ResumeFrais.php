@@ -11,6 +11,7 @@
 			<li >
 				  comptable :<br>
 				<?php echo $_SESSION['prenom']."  ".$_SESSION['nom']  ?>
+<<<<<<< HEAD
 			</li> 
  	   <li class="smenu">
               <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
@@ -79,3 +80,23 @@
    <input type="button" name="bouton" value="Refuser" onclick="ValiderMail(this.form)">
 </form>
 </div>
+=======
+			</li>
+ 	   <li class="smenu">
+            <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
+           </li>
+         </ul>
+        
+    </div>
+
+
+
+   <div id="contenu">
+   <?php
+         $employe = $pdo->getInfosFrais();
+   ?>
+
+         <input type="button" value="accepter">
+         <input type="button" value="refuser">
+   </div>
+>>>>>>> debcc7dc7db3f51924f9626235316412bfaf0a88
