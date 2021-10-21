@@ -1,55 +1,53 @@
-    <!-- Division pour le sommaire -->
-    <div id="menuGauche">
+<!-- Division pour le sommaire -->
+<div id="menuGauche">
      <div id="infosUtil">
-    
+
         <h2>
-    
+
 </h2>
-    
-      </div>  
+
+      </div>
         <ul id="menuList">
-			<li >
-				  comptable :<br>
-				<?php echo $_SESSION['prenom']."  ".$_SESSION['nom']  ?>
-<<<<<<< HEAD
-			</li> 
- 	   <li class="smenu">
+            <li >
+                  comptable :<br>
+                <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']  ?>
+            </li> 
+        <li class="smenu">
               <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
            </li>
-         </ul>     
+         </ul>
     </div>
 
    <div id="contenu">
    <table>
-		<thead>
+        <thead>
       <tr>
         <td>Visiteur</td>
         <td>Frais Forfait</td>
         <td>Quantite</td>
         <td>Mois</td>
       </tr>
-  	</thead>
-	<tbody>
-
+      </thead>
+    <tbody>
    <?php
-     $employe = $pdo->getInfosFrais();
+
+    $employe = $pdo->getInfosFrais();
    ?>
-   		</tbody>
-		</table>
-  </br>
-  </br>
+           </tbody>
+        </table>
     <table>
-		<thead>
+        <thead>
       <tr>
         <td>Libelle</td>
         <td>Prix</td>
       </tr>
-  	</thead>
-	<tbody>
+      </thead>
+    <tbody>
    <?php
-     $employe = $pdo->prixTotal();
+     $employe = $pdo->PrixTotal();
    ?>
-
+           </tbody>
+        </table>
    		</tbody>
 		</table>
   </br>
@@ -80,23 +78,3 @@
    <input type="button" name="bouton" value="Refuser" onclick="ValiderMail(this.form)">
 </form>
 </div>
-=======
-			</li>
- 	   <li class="smenu">
-            <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
-           </li>
-         </ul>
-        
-    </div>
-
-
-
-   <div id="contenu">
-   <?php
-         $employe = $pdo->getInfosFrais();
-   ?>
-
-         <input type="button" value="accepter">
-         <input type="button" value="refuser">
-   </div>
->>>>>>> debcc7dc7db3f51924f9626235316412bfaf0a88
