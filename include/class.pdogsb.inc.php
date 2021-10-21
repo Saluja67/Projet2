@@ -15,22 +15,13 @@
  * @link       http://www.php.net/manual/fr/book.pdo.php
  */
 
-
-
-class PdoGsb{ 
-	/*  		
+class PdoGsb{   		
       	private static $serveur='mysql:host=localhost';
       	private static $bdd='dbname=gsbweb';   		
       	private static $user='gsb-web' ;    		
-      	private static $mdp='pitakra67' ;
-		  */
-		private static $serveur='mysql:host=sql11.freemysqlhosting.net';
-      	private static $bdd='dbname=sql11439746';   		
-      	private static $user='sql11439746' ;    		
-      	private static $mdp='EhWRqJIdn7' ;
+      	private static $mdp='pitakra67' ;	
 		private static $monPdo;
 		private static $monPdoGsb=null;
-	
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -68,6 +59,59 @@ class PdoGsb{
 		$rs = PdoGsb::$monPdo->query($req);
 		$ligne = $rs->fetch();
 		return $ligne;
+	}
+
+	public function getfichesfrais(){
+
+		$info = PdoGsb::$monPdo -> query("SELECT idvisiteur,nom,prenom,fichefrais.mois from fichefrais inner join employe on fichefrais.idvisiteur = employe.id where idetat = 'CL' ");
+		$nbligne=0;
+		while($donnees = $info ->fetch())
+		{
+			$donnees['nbligne']=++$nbligne;
+			?>	
+			<tr>
+				<td><?php echo $donnees['nom'] ?></td>
+				<td><?php echo $donnees['prenom'] ?></td>
+				<td><?php echo $donnees['idvisiteur'] ?></td>
+				<td><?php echo $donnees['mois'] ?></td>
+
+				<td><?php echo '<a href ="index.php?uc=ResumeFrais&identifiant='.$donnees['idvisiteur'].'&mois='.$donnees['mois'].'">choisir</a>' ?></td>
+			</tr>
+			<?php
+		}
+	}
+
+
+	public function getInfosFrais(){
+		$info = PdoGsb::$monPdo -> query("SELECT idvisiteur,idfraisforfait,quantite,mois from lignefraisforfait where idvisiteur = '".$_GET['identifiant']."'and mois = '".$_GET['mois']."'");
+		while($donnees = $info ->fetch())
+		{
+			?>		
+			<tr>
+				<td><?php echo $donnees['idvisiteur'] ?></td>
+				<td><?php echo $donnees['idfraisforfait'] ?></td>
+				<td><?php echo $donnees['quantite'] ?></td>
+				<td><?php echo $donnees['mois'] ?></td>
+			</tr>
+			<?php
+		}
+	}
+
+	public function prixTotal(){
+		$info = PdoGsb::$monPdo -> query("SELECT libelle ,quantite * montant as total from lignefraisforfait INNER join fraisforfait on lignefraisforfait.idfraisforfait = fraisforfait.id where idvisiteur = '".$_GET['identifiant']."'and mois = '".$_GET['mois']."'");
+		while($donnees = $info ->fetch())
+		{
+			?>		
+			<tr>
+				<td><?php echo $donnees['libelle'] ?></td>
+				<td><?php echo $donnees['total'] ?></td>
+			</tr>
+
+
+			<?php
+		}
+		
+
 	}
 
 	
