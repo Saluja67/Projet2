@@ -111,7 +111,7 @@ switch ($action) {
             }
             if ($rs == NULL) {
                 ajouterErreur("Le Frais a bien été reporter");
-                $type = 1
+                $type = 1;
                 
                 include("vues/v_erreurs.php");
             }
