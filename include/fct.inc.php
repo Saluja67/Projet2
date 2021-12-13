@@ -11,7 +11,10 @@
  * @return vrai ou faux 
  */
 function estConnecte(){
-  return isset($_SESSION['idVisiteur']);
+return isset($_SESSION['idVisiteur']);
+     
+   
+
 }
 /**
  * Enregistre dans une variable session les infos d'un visiteur
@@ -64,6 +67,23 @@ function getMois($date){
 			$mois = "0".$mois;
 		}
 		return $annee.$mois;
+}
+function getSixDernierMois() {
+    $mois = date(m) + 1;
+    $annee = date(Y);
+    $tabMois = array();
+    for ($i = 6; $i > 0; $i--) {
+        $mois -= 1;
+        if ($mois < 1) {
+            $annee -= 1;
+            $mois = 12;
+        }
+        if (strlen($mois) < 2) {
+            $mois = "0" . $mois;
+        }
+        $tabMois[] = $annee. $mois;
+    }
+    return $tabMois;
 }
 
 /* gestion des erreurs*/
@@ -199,4 +219,5 @@ function nbErreurs(){
 	   return count($_REQUEST['erreurs']);
 	}
 }
+
 ?>
