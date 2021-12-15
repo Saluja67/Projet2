@@ -28,8 +28,8 @@ switch ($action) {
             $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($leVisiteur, $leMois);
             $lesFraisForfait = $pdo->getLesFraisForfait($leVisiteur, $leMois);
             $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($leVisiteur, $leMois);
-            $numAnnee = substr($leMois, 0, 4);
-            $numMois = substr($leMois, 4, 2);
+          //  $numAnnee = substr($leMois, 0, 4);
+            //$numMois = substr($leMois, 4, 2);
             $idEtat=$lesInfosFicheFrais['idEtat'];
            
             if ($idEtat!='CL'){
@@ -81,7 +81,7 @@ switch ($action) {
                 ajouterErreur("Les valeurs des frais doivent être numériques");
                 include("vues/v_erreurs.php");
             }
-            include ("vues/v_ModFicheFrais.php");
+            /*include ("vues/v_ModFicheFrais.php");*/
             break;
         }
     case 'supprimerFrais': {
@@ -111,7 +111,7 @@ switch ($action) {
             }
             if ($rs == NULL) {
                 ajouterErreur("Le Frais a bien été reporter");
-                $type = 1
+                $type = 1;
                 
                 include("vues/v_erreurs.php");
             }

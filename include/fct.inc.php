@@ -69,8 +69,8 @@ function getMois($date){
 		return $annee.$mois;
 }
 function getSixDernierMois() {
-    $mois = date(m) + 1;
-    $annee = date(Y);
+    $mois = date("m") + 1;
+    $annee = date("Y");
     $tabMois = array();
     for ($i = 6; $i > 0; $i--) {
         $mois -= 1;

@@ -16,11 +16,10 @@
  * @link       http://www.php.net/manual/fr/book.pdo.php
  */
 class PdoGsb {
-
     private static $serveur='mysql:host=localhost';
-    private static $bdd='dbname=gsb';   		
-    private static $user='gsbb' ;    		
-    private static $mdp='pitakra' ;	
+    private static $bdd='dbname=gsbweb';   		
+    private static $user='gsb-web' ;    		
+    private static $mdp='arnold67' ;
     private static $monPdo;
     private static $monPdoGsb=null;
 

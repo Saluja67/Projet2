@@ -33,6 +33,7 @@
                 <select id="lstMois" name="lstMois">
                     <?php
                     $tableauMois = getSixDernierMois();
+                    //$tableauMois=  array('202112','202111','202110','202109','202108','2021007','2021006');
                     for ($i = 0; $i < count($tableauMois); $i++) {
                         $numMois = substr($tableauMois[$i], 4, 2);
                         $numAnnee = substr($tableauMois[$i], 0, 4);
